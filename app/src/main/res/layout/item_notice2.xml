@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/rl_notice"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/iv_notice"
+        android:layout_margin="10dp"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_toRightOf="@+id/iv_notice"
+        android:layout_margin="10dp"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+    <TextView
+        android:layout_toRightOf="@+id/imageView"
+        android:id="@+id/notice_tv"
+        android:maxLines="1"
+        android:maxLength="25"
+        android:ellipsize="end"
+        android:layout_centerVertical="true"
+        android:text="@string/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical" />
+</RelativeLayout>
