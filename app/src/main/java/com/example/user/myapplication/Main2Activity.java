@@ -133,7 +133,9 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO do while you want to do
-                Snackbar.make(notice_ll,"公告图标被点击",Snackbar.LENGTH_SHORT).show();
+//                Snackbar.make(notice_ll,"公告图标被点击",Snackbar.LENGTH_SHORT).show();
+                startActivity(new Intent(Main2Activity.this,
+                        DownLoadTestActivity.class));
             }
         });
         rl_notice.setOnClickListener(new View.OnClickListener() {

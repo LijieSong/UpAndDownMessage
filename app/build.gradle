@@ -7,6 +7,7 @@ android {
         applicationId "com.example.user.myapplication"
         minSdkVersion 14
         targetSdkVersion 23
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -25,7 +26,11 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.liulishuo.filedownloader:library:1.2.2'
+    //download文件下载依赖
     testCompile 'junit:junit:4.12'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:design:25.0.0'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.alibaba:fastjson:1.2.20'
 }
