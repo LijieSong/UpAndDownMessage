@@ -1,9 +1,11 @@
-# UpAndDownMessage
+# UpAndDownMessage 内容说明
   带图片的公告点击事件及文件下载演示demo. 使用了github开源项目filedownloader,及OKhttp3网络请求和glide图片加载.
+
    使用ViewFlipper及handler结合使用,演示公告的上下翻动,及跳转相应的页面
+
    主要功能部分代码
-        创建一个handler并postDelayed
-         taskRun = new Runnable() {
+       创建一个handler并postDelayed
+      taskRun = new Runnable() {
             @Override
             public void run() {
                 handler.postDelayed(taskRun,3000);
@@ -11,23 +13,23 @@
                     @Override
                     public void run() {
                         moveNext();
-                        Log.d("slj", "下一个");
                     }
                 });
             }
         };
-    在onresume中 
+
+在onresume中
           @Override
     protected void onResume() {
         super.onResume();
         handler.postDelayed(taskRun,0);
     }
-     在onpause()中
+
+ 在onpause()中
       @Override
     protected void onPause() {
         super.onPause();
         handler.removeCallbacks(taskRun);
-        Log.d("slj", "onPause:移除了taskRUn");
     }
        主要逻辑实现 
       /* 移动到下一个*/
