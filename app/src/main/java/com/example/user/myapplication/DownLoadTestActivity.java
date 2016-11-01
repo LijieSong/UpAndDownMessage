@@ -32,7 +32,6 @@ public class DownLoadTestActivity extends AppCompatActivity {
 
         progress_bar = (ProgressBar)findViewById(R.id.progress_bar);
 
-
         img_btn_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
