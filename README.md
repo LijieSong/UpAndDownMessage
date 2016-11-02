@@ -86,4 +86,7 @@
     包含有一个文件缓存处理类:ACache.class类.
         
         单任务下载 :具体实现步骤 详见 DownLoadTestActivity.class 和 DownLoadFileUtils.class类
-          
+        
+    修改了部分 DownLoadFileUtils.class类的代码,以便更好的使用
+
+    增加了全部异常捕获保存本地文件的方法,可在下次重启APP时把异常信息上传至服务器.
