@@ -23,7 +23,7 @@ public class DownLoadTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         setContentView(R.layout.test_download_activity);
-
+        DemoApplication.getInstance().saveActivity(this);
         utils = new DownLoadFileUtils(this, DemoApplication.TEST_DOWNLOAD,".apk");
         Button img_btn_download = (Button) findViewById(R.id.img_btn_download);
         Button img_btn_stop = (Button) findViewById(R.id.img_btn_stop);

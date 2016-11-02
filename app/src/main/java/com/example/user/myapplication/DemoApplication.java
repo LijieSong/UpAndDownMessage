@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.support.multidex.MultiDex;
 import android.util.DisplayMetrics;
 
+import com.example.user.myapplication.utils.CrashHandler;
 import com.example.user.myapplication.utils.OkHttpManager;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.util.FileDownloadHelper;
@@ -47,8 +48,6 @@ public class DemoApplication extends Application {
         sRunningOnIceCreamSandwich = Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
     }
 
-    private String groupId = null;
-
     @Override
     public void onCreate() {
         MultiDex.install(this);
@@ -76,8 +75,15 @@ public class DemoApplication extends Application {
                         return builder.build();
                     }
                 });
+        //初始化异常捕获
+        getCrashHandler(applicationContext);
     }
 
+    public static CrashHandler getCrashHandler(Context context){
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(context);
+        return crashHandler;
+    }
     public static DemoApplication getInstance() {
         return instance;
     }

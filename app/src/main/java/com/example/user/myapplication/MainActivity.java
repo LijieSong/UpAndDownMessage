@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DemoApplication.getInstance().saveActivity(this);
         initDate();
         initRollNotice();
         //TODO 这是第二种方法 可以减少内存消耗
@@ -51,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         };
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //TODO 示例如何上传捕获的程序异常信息到服务器
+//        DemoApplication.getCrashHandler(DemoApplication.applicationContext).sendPreviousReportsToServer();
     }
 
     private void initDate() {
@@ -165,6 +173,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         handler.removeCallbacks(taskRun);
-        Log.d("slj", "onPause:移除了taskRUn");
     }
 }

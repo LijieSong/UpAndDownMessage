@@ -19,6 +19,7 @@ public class BaseWebActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_baseweb);
+		DemoApplication.getInstance().saveActivity(this);
 		mWebView = (ProgressWebView) findViewById(R.id.baseweb_webview);
 		initData();
 	}

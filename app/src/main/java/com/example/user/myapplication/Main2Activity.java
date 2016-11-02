@@ -34,6 +34,7 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        DemoApplication.getInstance().saveActivity(this);
         initDate();
         initRollNotice();
         //TODO 这是第二种方法 可以减少内存消耗
