@@ -3,10 +3,10 @@ package com.example.user.myapplication.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.user.myapplication.DemoApplication;
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadSampleListener;
 import com.liulishuo.filedownloader.FileDownloader;
@@ -24,21 +24,29 @@ public class DownLoadFileUtils {
     private String url;
     private String fileType;
     private int downLoadTask;
-    private String file;
-    private String FileName = "DangJian";
+    public static  final  String fileDir= Environment.getExternalStorageDirectory().toString()+"/MyApplication/";
     private String TAG = "DownLoadFileUtils";
     private String path = null;
+
+    private String fileFinalPath=null;
+
+
     /**
      * 初始化方式一
      * @param context
      * @param url
      * @param fileType
      */
-    public DownLoadFileUtils(Context context, String url, String fileType) {
+    public DownLoadFileUtils(Context context, String url, String fileType, String fileName) {
         this.context = context;
         this.url = url;
         this.fileType = fileType;
-        file = DemoApplication.getDefaultSaveRootPath() + File.separator + FileName + File.separator + System.currentTimeMillis();
+        File mainDir=new File(fileDir);
+        if(!mainDir.exists()){
+            mainDir.mkdirs();
+        }
+        fileFinalPath=fileDir+fileName;
+     //   file = DemoApplication.getDefaultSaveRootPath() + File.separator + FileName + File.separator + fileName;
     }
 
 //    /**
@@ -86,7 +94,7 @@ public class DownLoadFileUtils {
         if (fileIsExists(path) == false){
             Toast.makeText(context, "查看文件不存在", Toast.LENGTH_SHORT).show();
         }else{
-            openFile(new File(this.path));
+            openFile(new File(this.path),context);
         }
     }
     /**
@@ -110,10 +118,10 @@ public class DownLoadFileUtils {
         boolean isDir = false;
 
         if (fileType.contains(".") || fileType.equals(".")){
-            path= file+fileType;
+            path= fileFinalPath+fileType;
             Log.d(TAG,"走了包含\".\"");
         }else{
-            path = file +"."+fileType;
+            path = fileFinalPath +"."+fileType;
             Log.d(TAG,"走了不包含\".\"");
         }
         return FileDownloader.getImpl().create(url)
@@ -180,7 +188,7 @@ public class DownLoadFileUtils {
      *
      * @param file
      */
-    private void openFile(File file) {
+    public static final void openFile(File file,Context _context) {
         try{
         Intent intent = new Intent();
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -188,13 +196,13 @@ public class DownLoadFileUtils {
         intent.setAction(Intent.ACTION_VIEW);
         //获取文件file的MIME类型
         String type = getMIMEType(file);
-            Log.d(TAG,"type:"+type);
+            Log.d("type--->","type:"+type);
         //设置intent的data和Type属性。
         intent.setDataAndType(/*uri*/Uri.fromFile(file), type);
         //跳转
-        context.startActivity(intent);     //这里最好try一下，有可能会报错。 //比如说你的MIME类型是打开邮箱，但是你手机里面没装邮箱客户端，就会报错。
+            _context.startActivity(intent);     //这里最好try一下，有可能会报错。 //比如说你的MIME类型是打开邮箱，但是你手机里面没装邮箱客户端，就会报错。
         }catch(Exception e){
-            Log.d(TAG,"报错:"+e.getMessage());
+         Log.d("type--->","报错:"+e.getMessage());
             e.printStackTrace();
         }
     }
@@ -204,7 +212,7 @@ public class DownLoadFileUtils {
      *
      * @param file
      */
-    private String getMIMEType(File file) {
+    public static final String getMIMEType(File file) {
 
         String type = "*/*";
         String fName = file.getName();
@@ -224,7 +232,7 @@ public class DownLoadFileUtils {
         return type;
     }
 
-    private final String[][] MIME_MapTable = {
+    public static final String[][] MIME_MapTable = {
             //{后缀名，MIME类型}
             {".3gp", "video/3gpp"},
             {".apk", "application/vnd.android.package-archive"},
